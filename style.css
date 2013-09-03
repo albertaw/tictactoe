@@ -1,0 +1,77 @@
+#quiz{
+	display: none;
+	}
+	
+#sudoku td{
+	width: 3em;
+	height: 3em;
+	border: .25em solid black;
+	font-size: 2em;
+	text-align: center;
+	}
+	
+#feedback{
+	font-size: 2em;
+	}
+#sudoku{
+	display: none;
+	}
+	
+#tictactoe{
+	display: none;
+	}
+#sudoku{
+	display: none;
+	}
+	
+#tictactoe td{
+	width: 6em;
+	height:6em;
+	border: .25em solid black;
+	text-align: center;
+	font-size: 1em;
+	padding: 0;
+	}
+	
+#bingo {
+	display:none;
+	}
+
+#bingo td, #bingo th{
+	border: .25em solid black;
+	width: 20%;
+	padding: 1em;
+	text-align: center;
+	
+	}
+
+table{		
+	border-collapse: collapse;
+	}
+.pickedBG{
+	background: pink;
+	}
+#free{
+	background: pink;
+	}
+.winningBG{
+	background: green;
+	}
+.highlight{
+	border-color: blue;
+	}
+#numbers{
+	display: inline;
+	font-size: 2em;
+	}
+#letters{
+	display: inline;
+	font-size: 2em;
+	}
+#timer{
+	display: inline;
+	font-size: 2em;
+	}
+h1{
+	display: inline;
+}
