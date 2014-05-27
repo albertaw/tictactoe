@@ -62,8 +62,10 @@ var Tictactoe = (function () {
 		$('#reload').click(function () {
 			clearBoard();
 			cleanup();
+			AIManager.cleanup();
 			initGUI();
 			initGame();
+			AIManager.init();
 		});
 	};
 	
@@ -72,8 +74,10 @@ var Tictactoe = (function () {
 		$('#btnNextRound').show();
 		//flicker
 		$('#btnNextRound').click(function () {
+			//handle next round
 			clearBoard();
 			cleanup();
+			AIManager.cleanup();
 			setMessage("round " + round);
 			$(this).hide();
 		});
@@ -154,7 +158,7 @@ var Tictactoe = (function () {
 			
 		} 
 		//checkWin
-		if (isWin(player[turn])) {		//check if state is a win
+		if (isWin(player[turn].state)) {		//check if state is a win
 			changeState("win");
 		} else if (numMoves === 9) {	//if not a win check if a draw
 			changeState("draw");
@@ -184,7 +188,8 @@ var Tictactoe = (function () {
 				handlePlayerX();
 				break;
 			case "playerO":
-				handlePlayerO();
+				disableBoard();	//disable click events
+				setTimeout(function () {handlePlayerO();}, 500);
 				break;
 		}
 	};
@@ -232,10 +237,19 @@ var Tictactoe = (function () {
 	var handlePlayerO = function () {
 		currentState = "playerO";
 		turn = "o";
-		//disableBoard();	//disable click events
-		//AIManager.update();
-		//check for win
-		//changeState("playerX");
+		//AI
+		AIManager.update();		//make move
+		numMoves++;		//update move count
+		console.log("numMoves:" + numMoves);
+		//checkWin
+		if (isWin(player[turn].state)) {		//check if state is a win
+			changeState("win");
+		} else if (numMoves === 9) {	//if not a win check if a draw
+			changeState("draw");
+		} else {						//if not a win or draw, change turns
+			changeState("playerX");
+		}
+	
 	};
 	
 	//utility function to display text on screen
@@ -246,7 +260,7 @@ var Tictactoe = (function () {
 	//returns true if player has 3 marks in a row
 	var isWin = function (player) {
 		for (var i = 0; i < wins.length; i++) {
-			if ((wins[i] & player.state) === wins[i]) {	
+			if ((wins[i] & player) === wins[i]) {	
 				//text('feedback', player.name + ' Wins');
 				return true;
 			}
@@ -258,6 +272,7 @@ var Tictactoe = (function () {
 	//tasks to run when screen first loads	
 	var initGame = function () {
 		//resets
+		enableBoard();
 		numMoves = 0;
 		round = 1;
 		turn = 'x';
@@ -274,7 +289,8 @@ var Tictactoe = (function () {
 	//tasks to rund at the end of each game round
 	var cleanup = function () {
 		numMoves = 0;
-		turn = 'x';
+		console.log("numMoves:" + numMoves);
+		changeState("playerX");	//ensure x always starts
 		player.x.state = 0;
 		player.o.state = 0;
 	};
