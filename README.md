@@ -3,6 +3,7 @@
 ### Installation
 ```bash
 git clone git@github.com:albertaw/tictactoe.git
+cd tictactoe
 npm install
 ```
 
