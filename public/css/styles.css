@@ -1,0 +1,106 @@
+.home-bg {
+	background-color: #FBD800;
+}
+
+/*********************************
+HEADER
+**********************************/
+
+#nav-title{
+	font-size: 2em;
+	}
+
+label{
+	font-size: 1.75em;
+	color: white;
+	vertical-align: middle;
+	margin-left: .5em;
+	}
+
+#x{
+	width: 2em;	
+	text-align: center;
+	font-size: 1.75em;
+	background-color: transparent;
+	color: white;
+	border: none;
+	cursor: default;
+	padding: 0;
+	margin: 0;
+	}
+	
+#o{
+	width: 2em;	
+	text-align: center;
+	font-size: 1.75em;
+	background-color: transparent;
+	color: white;
+	border: none;
+	cursor: default;
+	padding: 0;
+	margin: 0;
+	}
+	
+	
+/*********************************
+BOARD
+**********************************/
+.message-block{
+	margin-bottom: 3em;
+	}
+
+#message {
+	font-size: 3em;
+}
+
+img{
+	display:;
+	margin-left: 1em;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	}
+	
+.xMark {
+	background: url(../img/x-mark-64.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	}
+
+.oMark {
+	background: url(../img/o-mark-64.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	}
+
+#tBoard {		
+	margin: 0 auto;
+	border-collapse: collapse;
+	cursor: pointer;
+	width: 100%;
+	max-width: 24em; 
+	table-layout: fixed;
+	font-size: ;
+	}
+	
+#tBoard td{
+	width: 33%;
+	height: 8em;
+	border: .75em solid #222;
+	border-left: 0;
+	border-top: 0;
+	text-align: center;
+	font-weight: bold;
+	padding: 0;
+	}
+	
+#tBoard td:last-child {
+	border-bottom: ;
+	border-right: 0;
+	}
+#tBoard tr:last-child td {
+	border-bottom: 0;
+	}
+	
+
+

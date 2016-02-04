@@ -312,5 +312,3 @@ var Tictactoe = (function () {
 })();
 
 
-Tictactoe.initGUI();
-Tictactoe.initGame();
