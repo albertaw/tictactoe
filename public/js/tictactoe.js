@@ -73,6 +73,7 @@ var Tictactoe = (function () {
 		for (var i = 0; i < 9; i++) {		//for each table cell
 			boardArray[i] = {};
 			boardArray[i].mark = MARK_NONE;
+			boardArray[i].ID = i;
 			boardArray[i].state = Math.pow(2, i);
 			//for AI strategy
 			if (i == 4) {		
@@ -125,9 +126,12 @@ var Tictactoe = (function () {
 			player.x.state += boardArray[i].state;
 			//switch gamesate
 			gameState = "O_TURN";
-
-		}
-
+			setTimeout(function(){
+					handlePlayer2();
+			}, 1000);
+	
+		} 
+		
 		//if player o's turn
 		else if (gameState ==	"O_TURN") {
 			//mark square
@@ -137,9 +141,27 @@ var Tictactoe = (function () {
 			//switch gamesate
 			gameState = "X_TURN";
 		}
+		
 		numMoves++;
 		checkForWin();
 		
+	};
+
+	var handlePlayer2 = function () {
+			//$("#message").text(stringForGameState());
+			//mark square
+			AI.update();
+			var i = AI.getMoveNum();
+			$('#'+i).trigger('click');
+			//updateSquare(i);
+			//boardArray[i].mark = MARK_O;
+			//console.log(boardArray[i]);
+			//add points to player x
+			//player.o.state += boardArray[i].state;
+			//switch gamesate
+			//gameState = "X_TURN";
+			//$("#" + i).addClass("oMark");
+			
 	};
 
 	var checkForWin = function () {
@@ -240,9 +262,10 @@ var Tictactoe = (function () {
 		$('.boardCell').click(function () {
 			var id = $(this).attr("id").valueOf();
 			updateSquare(id);
-			console.log(boardArray[id]);
+			//console.log(boardArray[id]);
 			$(this).addClass(stringForSquare(id));
 			$("#message").text(stringForGameState());
+			//handlePlayer2();
 		});
 
 		//click listener for new game
@@ -344,6 +367,38 @@ return {
 			clearBoardArray();
 			clearBoard();
 		},
+		getBoardArray: getBoardArray
 	};
 
+})();
+
+var AI = (function () {
+	var moves = [];
+
+	//resets moves list
+	var update = function () {
+		//delete any leftover moves
+		while (moves.length > 0) {
+			moves.pop();
+		}
+		//get unmarked squares
+		for (var i = 0; i < 9; i++) {
+			var arr = Tictactoe.getBoardArray();
+			if (arr[i].mark === 0) {
+				moves.push(arr[i]);
+			}
+		}
+		//console.log (moves);
+	};
+	var getMoveNum = function () {
+		
+		console.log("computer move to " + moves[0].ID);
+		return moves[0].ID;
+	}
+
+	return {
+		update: update,
+		getMoveNum: getMoveNum
+
+	}
 })();
