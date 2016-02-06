@@ -45,9 +45,6 @@ label{
 /*********************************
 BOARD
 **********************************/
-.message-block{
-	margin-bottom: 3em;
-	}
 
 #message {
 	font-size: 3em;
@@ -73,7 +70,7 @@ img{
 	background-position: center;
 	}
 
-#tBoard {		
+.tBoard {		
 	margin: 0 auto;
 	border-collapse: collapse;
 	cursor: pointer;
@@ -83,7 +80,7 @@ img{
 	font-size: ;
 	}
 	
-#tBoard td{
+.tBoard td{
 	width: 33%;
 	height: 8em;
 	border: .75em solid #222;
@@ -94,11 +91,11 @@ img{
 	padding: 0;
 	}
 	
-#tBoard td:last-child {
+.tBoard td:last-child {
 	border-bottom: ;
 	border-right: 0;
 	}
-#tBoard tr:last-child td {
+.tBoard tr:last-child td {
 	border-bottom: 0;
 	}
 	

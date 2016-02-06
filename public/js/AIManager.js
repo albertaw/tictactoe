@@ -29,7 +29,7 @@ var AIManager = (function () {
 				break;
 		}
 		
-		getMoves();
+		//getMoves();
 		cleanup();	
 		turnNumber++;
 		
@@ -42,9 +42,9 @@ var AIManager = (function () {
 			moves.pop();
 		}
 		//search cell for selected squares
-		for (var i = 0; i < Tictactoe.cell.length; i++) {
-			if (!Tictactoe.cell[i].isSelected) {
-				moves.push(Tictactoe.cell[i]);
+		for (var i = 0; i < 9; i++) {
+			if (!Tictactoe.board.getCells()[i].isSelected) {
+				moves.push(Tictactoe.board.getCells()[i]);
 			}
 		}
 	};
@@ -59,9 +59,9 @@ var AIManager = (function () {
 	
 	//helper function for makeMove, marks the cell as selected and updates winning state score for o
 	var select = function (num) {
-		Tictactoe.cell[num].isSelected = true;		//mark square as taken
-		Tictactoe.cell[num].className = "oMark";
-		Tictactoe.player.o.state += Tictactoe.cell[num].state;	//update winning state
+		Tictactoe.board.getCells()[num].isSelected = true;		//mark square as taken
+		Tictactoe.board.getCells()[num].addClass("oMark");
+		Tictactoe.game.player.o.state += Tictactoe.board.getCells()[num].state;	//update winning state
 		
 	};
 	
@@ -71,6 +71,7 @@ var AIManager = (function () {
 		var index = moves.length - 1;	//get the last element
 		var id = moves[index].ID;	//find the cell id of this element
 		select(id);		//mark the cell
+		console.log("move to " + id);
 		//moves.pop();	//delete the move from the list
 	};
 	
@@ -88,9 +89,9 @@ var AIManager = (function () {
 	 */
 	 
 	// setInitialPosition
-	for (var i = 0; i < Tictactoe.cell.length; i++) {
-		if (Tictactoe.cell[i].isSelected) {
-			initialPosition = Tictactoe.cell[i].position
+	for (var i = 0; i < 9; i++) {
+		if (Tictactoe.board.getCells()[i].isSelected) {
+			initialPosition = Tictactoe.board.getCells()[i].position
 			console.log("initial position:" + initialPosition);
 			break;
 		}

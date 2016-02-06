@@ -42,7 +42,7 @@
 			<!-- =========================
 				TOP MENU  
 			============================== -->
-			<header class="menu menu-horizontal menu-top affix light-theme transparent">
+			<header class="menu menu-horizontal menu-top light-theme transparent">
 				<div class="container-fluid">
 					<!--
 					DESKTOP NAVIGATION 
@@ -60,27 +60,13 @@
 				<div class="container text-center">
 					<!-- CENTER CONTENT  -->
 					<div class="center-content col-xs-12">
-				 		<div class="message-block">
-							<span id="message" class="description"></span>
-							<img id="btnNextRound" src="img/forward-64.png">
-						</div>
-				 		<table id="tBoard">
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
+				 		<p>
+							<span id="message" class="description text-capitalize"></span>
+						</p>
+				 		<p id="game"></p>
+				 		<p>
+				 			<span id="btnNewGame" class="button button-default button-dark">new game</span>
+				 		</p>
 					</div>
 				</div>
 			</section><!-- END HOME -->
@@ -96,8 +82,7 @@
 		<script src="js/tictactoe.js"></script>
 		<script src="js/AIManager.js"></script>
 		<script type="text/javascript">
-			Tictactoe.initGUI();
-			Tictactoe.initGame();
+			Tictactoe.init();
 			$('.center-content').vAlign();
 		</script>
 	</body>
