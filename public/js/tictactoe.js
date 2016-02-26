@@ -238,11 +238,12 @@ var Tictactoe = (function () {
 
 		//click listener for new game
 		$('#btnNewGame').click(function () {
-			resetGame();
-			clearBoardArray();
-			clearBoard();
-			$("#message").text(stringForGameState());
-		})
+			//resetGame();
+			//clearBoardArray();
+			//clearBoard();
+			//$("#message").text(stringForGameState());
+			socket.emit('newGame');
+		});
 		
 		if (players !== 1) {
 			onePlayer = false;
@@ -275,6 +276,8 @@ return {
 			resetGame();
 			clearBoardArray();
 			clearBoard();
+			enableBoard();
+			$("#message").text(stringForGameState());
 		},
 		createBoard: createBoard,
 		getBoardArray: getBoardArray

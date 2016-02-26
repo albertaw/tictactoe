@@ -63,14 +63,26 @@ io.sockets.on('connection', function (socket) {
 		//disable this socket and enable the other socket's board
 		//update other player's screen
 		var users = player.room.player;
-			for (var i in users) {
-				if (users[i].userid !== player.userid) {
-					users[i].socket.emit('update', content);
-				}
+		for (var i in users) {
+			if (users[i].userid !== player.userid) {
+				users[i].socket.emit('update', content);
 			}
+		}
 	});
 
-	
-	player.socket.emit('join');
+	player.socket.on('newGame', function () {
+		//update other player's screen
+		var users = player.room.player;
+		for (var i in users) {
+			users[i].socket.emit('newGame');
+			users[i].socket.emit('serverMessage', 'New game started');
+			if (users[i].turn === 'o') {
+				users[i].socket.emit('disable');	
+			}
+		}
+
+	});
+
+	//player.socket.emit('join');
 
 });

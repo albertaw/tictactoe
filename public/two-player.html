@@ -39,9 +39,7 @@
 	<body>
 		
 		<div class="hero-wrapper">
-			<div id="status" class="status status-info">
-				X has joined
-			</div>
+			<div id="status" class="status status-info"></div>
 			<!-- =========================
 				TOP MENU  
 			============================== -->
@@ -69,6 +67,10 @@
 							<span id="message" class="description text-capitalize"></span>
 						</p>
 				 		<p id="game"></p>
+				 		<p>
+				 			<br>
+				 			<span id="btnNewGame" class="button button-default button-pill button-dark">new game</span>
+				 		</p>
 					</div>
 				</div>
 			</section><!-- END HOME -->
@@ -89,6 +91,7 @@
 			Tictactoe.init(2);
 
 			$('.center-content').vAlign();
+			
 			var socket = io.connect();
 			
 			socket.emit('join');
@@ -102,12 +105,18 @@
 			});
 
 			socket.on('update', function (content) {
+				//show other player's move
 				Tictactoe.update(content);
+				//allow player to make move
 				Tictactoe.enable();
 			});
 
 			socket.on('disable', function () {
 				Tictactoe.disable();
+			});
+
+			socket.on('newGame', function () {
+				Tictactoe.cleanup();
 			});
 		</script>
 	</body>
