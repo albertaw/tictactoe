@@ -69,7 +69,6 @@
 							<span id="message" class="description text-capitalize"></span>
 						</p>
 				 		<p id="game"></p>
-				 		
 					</div>
 				</div>
 			</section><!-- END HOME -->
@@ -104,8 +103,12 @@
 
 			socket.on('update', function (content) {
 				Tictactoe.update(content);
+				Tictactoe.enable();
 			});
 
+			socket.on('disable', function () {
+				Tictactoe.disable();
+			});
 		</script>
 	</body>
 </html>

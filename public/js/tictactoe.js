@@ -260,6 +260,7 @@ var Tictactoe = (function () {
 		$('.boardCell').on('click',function () {
 			var id = $(this).attr('id');
 			update(id);
+			disableBoard();
 			socket.emit('boardClicked', id);
 		});
 	};
@@ -268,6 +269,8 @@ var Tictactoe = (function () {
 return {
 		init: init,
 		update: update,
+		enable: enableBoard,
+		disable: disableBoard,
 		cleanup: function () {
 			resetGame();
 			clearBoardArray();
