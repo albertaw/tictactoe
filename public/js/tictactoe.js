@@ -234,7 +234,7 @@ var Tictactoe = (function () {
 		$("#message").text(stringForGameState());
 
 		//click listener for board
-		enableBoard();
+		disableBoard();
 
 		//click listener for new game
 		$('#btnNewGame').click(function () {

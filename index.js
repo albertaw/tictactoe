@@ -32,13 +32,14 @@ io.sockets.on('connection', function (socket) {
 		} else if (player.turn === 'o'){
 			//if player o, notify player x that o has joined notify both that the game has started
 			player.socket.emit('serverMessage', 'Playing as O');
-			player.socket.emit('disable');
+			//player.socket.emit('disable');
 			var users = player.room.player;
 			for (var i in users) {
 				//don't broadcast message to self
 				if (users[i].userid !== player.userid) {
 					users[i].socket.emit('serverMessage', player.turn + ' joined.');
-				}
+					users[i].socket.emit('enable');
+				} 
 			}
 		}
 	});

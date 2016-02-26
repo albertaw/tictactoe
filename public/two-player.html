@@ -111,6 +111,11 @@
 				Tictactoe.enable();
 			});
 
+			socket.on('enable', function () {
+					Tictactoe.enable();
+					console.log('board enabled');
+			});
+
 			socket.on('disable', function () {
 				Tictactoe.disable();
 			});
