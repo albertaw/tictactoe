@@ -1,5 +1,5 @@
 <!Doctype html>
-<html lang="en" ng-app="tictactoe">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,9 +36,12 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 	</head>
-	<body ng-controller="mainController">
+	<body>
 		
 		<div class="hero-wrapper">
+			<div id="status" class="status status-info">
+				X has joined
+			</div>
 			<!-- =========================
 				TOP MENU  
 			============================== -->
@@ -58,15 +61,15 @@
 			=================================== -->
 			<section class="bg hero-bg home-bg light-theme">
 				<div class="container text-center">
+
 					<!-- CENTER CONTENT  -->
 					<div class="center-content col-xs-12">
 				 		<p>
+
 							<span id="message" class="description text-capitalize"></span>
 						</p>
 				 		<p id="game"></p>
-				 		<p>
-				 			<span id="btnNewGame" class="button button-default button-dark">new game</span>
-				 		</p>
+				 		
 					</div>
 				</div>
 			</section><!-- END HOME -->
@@ -78,11 +81,31 @@
 			SCRIPTS 
 		============================== -->
 		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src="/socket.io/socket.io.js"></script>
 		<script type="text/javascript" src="js/cerebro.js"></script>
 		<script src="js/tictactoe.js"></script>
 		<script type="text/javascript">
+			
 			Tictactoe.init(2);
+
 			$('.center-content').vAlign();
+			var socket = io.connect();
+			
+			socket.emit('join');
+
+			socket.on('serverMessage', function (content) {
+				
+				$('#status').text(content).show();
+				setTimeout(function(){
+					$('#status').fadeOut('slow');
+				}, 3500);
+			});
+
+			socket.on('update', function (content) {
+				Tictactoe.update(content);
+			});
+
 		</script>
 	</body>
 </html>

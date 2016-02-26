@@ -108,10 +108,6 @@ var Tictactoe = (function () {
 
 	}; 
 
-	/***********************
-	 * GAME STATE MANAGER
-	************************/
-	
 	//updates cell as selected, adds an x or o to location,
 	//updates player's winning state score
 	var updateSquare = function (i) {
@@ -128,7 +124,8 @@ var Tictactoe = (function () {
 			player.x.state += boardArray[i].state;
 			//switch gamesate
 			gameState = "O_TURN";
-			if (onePlayer && numMoves < 9) {
+			//TODO: make sure move is not processed if board is full
+			if (onePlayer) {
 				disableBoard();
 				setTimeout(function(){
 					handlePlayer2();
@@ -214,10 +211,11 @@ var Tictactoe = (function () {
 		return gameStateLabel;
 	};
 	
-	var update = function (self) {
-		var id = self.attr("id").valueOf();
+	var update = function (id) {
+		//var id = self.attr("id").valueOf();
 		updateSquare(id);
-		self.addClass(stringForSquare(id));
+		var elem = document.getElementById(id);
+		$(elem).addClass(stringForSquare(id));
 		$("#message").text(stringForGameState());
 	}
 
@@ -260,18 +258,22 @@ var Tictactoe = (function () {
 
 	var enableBoard = function () {
 		$('.boardCell').on('click',function () {
-			update($(this));
+			var id = $(this).attr('id');
+			update(id);
+			socket.emit('boardClicked', id);
 		});
 	};
 
 
 return {
 		init: init,
+		update: update,
 		cleanup: function () {
 			resetGame();
 			clearBoardArray();
 			clearBoard();
 		},
+		createBoard: createBoard,
 		getBoardArray: getBoardArray
 	};
 
