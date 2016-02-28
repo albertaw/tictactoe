@@ -62,6 +62,7 @@ io.sockets.on('connection', function (socket) {
 	player.socket.on('boardClicked', function (content) {
 		console.log('board clicked by ' + player.turn);
 		//disable this socket and enable the other socket's board
+		player.socket.emit('disable');
 		//update other player's screen
 		var users = player.room.player;
 		for (var i in users) {
@@ -84,6 +85,5 @@ io.sockets.on('connection', function (socket) {
 
 	});
 
-	//player.socket.emit('join');
 
 });

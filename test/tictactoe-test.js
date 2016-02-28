@@ -2,8 +2,8 @@ module("Tictactoe", {
 
 });
 
-Tictactoe.board.init();
-	var cell = Tictactoe.board.getCells();
+Tictactoe.init(2);
+var cell = Tictactoe.getBoardArray();
 
 test("game board initialization", function () {
 	
@@ -38,53 +38,50 @@ test("game board initialization", function () {
 	
 });
 
-var player = Tictactoe.game.player;
+var player = Tictactoe.player;
 
 test("initial game state", function () {
 
-	Tictactoe.game.init(1);
 	//test initial values
 	equal(player["x"].state, 0, "x state = 0");
 	equal(player["x"].score, 0, "x score = 0");
 	equal(player["o"].state, 0, "o state = 0");
 	equal(player["o"].score, 0, "o score = 0");
-	
-	equal(Tictactoe.game.numMoves, 0, "numMoves = 0");
-	equal(Tictactoe.game.round, 1, "round = 1");
-	equal(Tictactoe.game.turn, "x", "turn = x");
+	equal(Tictactoe.numMoves, 0, "numMoves = 0");
+	equal(Tictactoe.gameState, "X_TURN", "turn = x");
 	
 });
 
 test("winning states", function () {
 	//test diagonal iswin player x
 	player["x"].state = 273;
-	equal(Tictactoe.game.isWin(player["x"].state), true, "Win = true");
+	equal(Tictactoe.isWin(player["x"].state), true, "Win = true");
 	
 	//test horizontal iswin player x
 	player["x"].state = 7;
-	equal(Tictactoe.game.isWin(player["x"].state), true, "Win = true");
+	equal(Tictactoe.isWin(player["x"].state), true, "Win = true");
 	
 	//test vertical is win player x
 	player["x"].state = 73;
-	equal(Tictactoe.game.isWin(player["x"].state), true, "Win = true");
+	equal(Tictactoe.isWin(player["x"].state), true, "Win = true");
 	
 	//test win with 4 squares selected 56 + 4
 	player["x"].state = 60;
-	equal(Tictactoe.game.isWin(player["x"].state), true, "Win = true");
+	equal(Tictactoe.isWin(player["x"].state), true, "Win = true");
 	
 	//test win with 5 squares selected 7 + 8 + 32
 	player["x"].state = 47;
-	equal(Tictactoe.game.isWin(player["x"].state), true, "Win = true");
+	equal(Tictactoe.isWin(player["x"].state), true, "Win = true");
 	
 	//test non winning state 4 + 8 + 16
 	player["x"].state = 28;
-	equal(Tictactoe.game.isWin(player["x"].state), false, "Win = false");
+	equal(Tictactoe.isWin(player["x"].state), false, "Win = false");
 	
 	//test non winning state 1 + 2 + 8 + 16
 	player["x"].state = 27;
-	equal(Tictactoe.game.isWin(player["x"].state), false, "Win = false");
+	equal(Tictactoe.isWin(player["x"].state), false, "Win = false");
 
-	Tictactoe.game.cleanup();
+	Tictactoe.cleanup();
 	
 	
 });
@@ -92,9 +89,16 @@ test("winning states", function () {
 test("game moves", function () {
 	
 	//clicking board turn should be o
-	Tictactoe.game.update(cell[0]);
+	Tictactoe.updateSquare(0);
+	//$('#0').trigger('click');
 	equal(player["x"].state, 1, "x state = 1");
-	equal(Tictactoe.game.turn, "x", "turn = x");
+	equal(Tictactoe.gameState, "O_TURN", "turn = o");
+	Tictactoe.updateSquare(1);
+	equal(player["o"].state, 2, "o state = 2");
+	equal(Tictactoe.gameState, "X_TURN", "turn = x");
+	Tictactoe.updateSquare(2);
+	equal(player["x"].state, 5, "x state = 5");
+	equal(Tictactoe.gameState, "O_TURN", "turn = o");
 	//test if turn is toggled to x after o check for win
 	
 	//test board is draw
@@ -106,11 +110,12 @@ test("game moves", function () {
 	//test that there is no change in score in the event of a draw
 	
 	//test that values reset
-	//Tictactoe.cleanup();
+
 	//equal(Tictactoe.player["x"].state, 0, "x state = 0");
 	//equal(Tictactoe.player["o"].state, 0, "o state = 0");
 	//equal(Tictactoe.numMoves, 0, "numMoves = 0");
 	//equal(Tictactoe.turn, "x", "turn = x");
+	Tictactoe.cleanup();
 })
 /*
 module('AI', {

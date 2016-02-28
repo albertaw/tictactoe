@@ -124,25 +124,25 @@ var Tictactoe = (function () {
 			player.x.state += boardArray[i].state;
 			//switch gamesate
 			gameState = "O_TURN";
-			//TODO: make sure move is not processed if board is full
 			if (onePlayer) {
 				disableBoard();
 				setTimeout(function(){
-					handlePlayer2();
+					handleComputer();
 					enableBoard();
-					}, 500);
+				}, 1000);
 			}
-	
 		} 
-		
+
 		//if player o's turn
 		else if (gameState ==	"O_TURN") {
+			
 			//mark square
 			boardArray[i].mark = MARK_O;
-			//add points to player x
+			//add points to player o
 			player.o.state += boardArray[i].state;
 			//switch gamesate
 			gameState = "X_TURN";
+		
 		}
 		
 		numMoves++;
@@ -150,13 +150,12 @@ var Tictactoe = (function () {
 		
 	};
 
-	var handlePlayer2 = function () {
+	var handleComputer = function () {
 			//mark square
+			console.log('computer turn');
 			AI.update();
 			var i = AI.getMoveNum();
-			updateSquare(i);
-			$("#" + i).addClass("oMark");
-			$("#message").text(stringForGameState());		
+			update(i);
 	};
 
 	var checkForWin = function () {
@@ -226,31 +225,13 @@ var Tictactoe = (function () {
 		player.x.state = 0;
 		player.o.state = 0;
 	};
-	
-	//tasks to run when screen first loads	
-	var init = function (players) {
-		setBoardArray();
-		createBoard();
+
+	var cleanup = function () {
+		resetGame();
+		clearBoardArray();
+		clearBoard();
 		$("#message").text(stringForGameState());
-
-		//click listener for board
-		disableBoard();
-
-		//click listener for new game
-		$('#btnNewGame').click(function () {
-			//resetGame();
-			//clearBoardArray();
-			//clearBoard();
-			//$("#message").text(stringForGameState());
-			socket.emit('newGame');
-		});
-		
-		if (players !== 1) {
-			onePlayer = false;
-		} 
-		console.log("game initialized");
-		
-	};
+	}
 	
 	//removes click events from board
 	var disableBoard = function () {
@@ -261,26 +242,45 @@ var Tictactoe = (function () {
 		$('.boardCell').on('click',function () {
 			var id = $(this).attr('id');
 			update(id);
-			disableBoard();
 			socket.emit('boardClicked', id);
 		});
 	};
 
+	//tasks to run when screen first loads	
+	var init = function (players) {
+		setBoardArray();
+		createBoard();
+		$("#message").text(stringForGameState());
+
+		//click listener for new game
+		$('#btnNewGame').click(function () {
+			cleanup();
+			socket.emit('newGame');
+		});
+
+		enableBoard();
+
+		if (players !== 1) {
+			onePlayer = false;
+			//click listener for board
+			disableBoard();
+		} 
+		console.log("game initialized");
+		
+	};
 
 return {
 		init: init,
-		update: update,
+		updateSquare: updateSquare,
 		enable: enableBoard,
 		disable: disableBoard,
-		cleanup: function () {
-			resetGame();
-			clearBoardArray();
-			clearBoard();
-			enableBoard();
-			$("#message").text(stringForGameState());
-		},
+		cleanup: cleanup,
+		player: player,
+		numMoves: numMoves,
+		gameState: gameState,
 		createBoard: createBoard,
-		getBoardArray: getBoardArray
+		getBoardArray: getBoardArray,
+		isWin: isWin
 	};
 
 })();

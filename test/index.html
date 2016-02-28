@@ -2,9 +2,6 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="qunit.css">
-		<script src="jquery.js"></script>
-		<script src="qunit.js"></script>
-		
 	</head>
 	<body>
 		<h1 id="qunit-header">Tictactoe</h1>
@@ -12,10 +9,24 @@
 		<div id="qunit-testrunner-toolbar"></div>
 		<h2 id="qunit-userAgent"></h2>
 		<ol id="qunit-tests"></ol>
-		<div id="qunit-fixture"><div id="dom-test" style="display:none">
+		<div id="qunit-fixture">
+			<div id="dom-test" style="display:none">
+			
+				<div id="messageBlock" class="" >
+					
+					<h1 id="message" class=""></h1>
+					<img id="btnNextRound" src="img/forward-64.png">
+				</div>
+
+				<div id="game"></div>
+					
+			</div>
+			
+		</div>	
+		<script src="jquery.js"></script>
+		<script src="qunit.js"></script>
 		<script src="../public/js/tictactoe.js"></script>
 		<script src="../public/js/AIManager.js"></script>
 		<script src="tictactoe-test.js"></script>
-		
 	</body>
 </html>
