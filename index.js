@@ -53,9 +53,10 @@ io.sockets.on('connection', function (socket) {
 			//force remaining user to become x
 			for (var i in users) {
 				users[i].turn = 'x';
-			}
-			users[i].socket.emit('serverMessage', player.turn + ' has left. Playing as ' + 
+			
+				users[i].socket.emit('serverMessage', player.turn + ' has left. Playing as ' + 
 				users[i].turn);
+			}
 		}
 	});
 

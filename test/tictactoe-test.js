@@ -89,7 +89,7 @@ test("winning states", function () {
 test("game moves", function () {
 	
 	//clicking board turn should be o
-	Tictactoe.updateSquare(0);
+	Tictactoe.update(0);
 	//$('#0').trigger('click');
 	equal(player["x"].state, 1, "x state = 1");
 	equal(Tictactoe.gameState, "O_TURN", "turn = o");

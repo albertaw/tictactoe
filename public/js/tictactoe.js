@@ -117,7 +117,7 @@ var Tictactoe = (function () {
 		} 
 
 		//if player x's turn
-		if (gameState ==	"X_TURN") {
+		if (gameState ===	"X_TURN") {
 			//mark square
 			boardArray[i].mark	= MARK_X;
 			//add points to player x
@@ -134,7 +134,7 @@ var Tictactoe = (function () {
 		} 
 
 		//if player o's turn
-		else if (gameState ==	"O_TURN") {
+		else if (gameState ===	"O_TURN") {
 			
 			//mark square
 			boardArray[i].mark = MARK_O;
@@ -242,7 +242,9 @@ var Tictactoe = (function () {
 		$('.boardCell').on('click',function () {
 			var id = $(this).attr('id');
 			update(id);
-			socket.emit('boardClicked', id);
+			if (!onePlayer) {
+				socket.emit('boardClicked', id);
+			}
 		});
 	};
 
@@ -255,7 +257,9 @@ var Tictactoe = (function () {
 		//click listener for new game
 		$('#btnNewGame').click(function () {
 			cleanup();
-			socket.emit('newGame');
+			if (!onePlayer) {
+				socket.emit('newGame');
+			}
 		});
 
 		enableBoard();
@@ -271,6 +275,7 @@ var Tictactoe = (function () {
 
 return {
 		init: init,
+		update: update,
 		updateSquare: updateSquare,
 		enable: enableBoard,
 		disable: disableBoard,
@@ -304,9 +309,7 @@ var AI = (function () {
 		//console.log (moves);
 	};
 	var getMoveNum = function () {
-		if (moves) {
 			return moves[0].ID;
-		}
 		
 	}
 
