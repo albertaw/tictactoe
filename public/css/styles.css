@@ -2,8 +2,13 @@
     background-color: #FBD800;
 }
 
+.users{
+    text-transform: capitalize;
+    list-style-type: disc;
+}
+
 .status {
-    display: inline-block;
+    display: none;
     position: fixed;
     padding: 1em;
     top: 1em;

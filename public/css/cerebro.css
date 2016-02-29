@@ -755,13 +755,13 @@ elements absolutely */
 .menu ul li,
 .footer ul li {
   letter-spacing: 2px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 
 .menu ul,
 .footer ul {
   padding: 0;
-  list-style-type: none;
+ list-style-type: none;
 }
 
 .footer ul {

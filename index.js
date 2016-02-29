@@ -23,22 +23,24 @@ io.sockets.on('connection', function (socket) {
 	var player = new Player(socket);
 	//handle join event for player, add to a room, 
 	//emit to self and room the status of the game 
-	player.socket.on('join', function() {
+	player.socket.on('join', function(username) {
 		player.userid = UUID();
+		player.username = username;
 		Room.findRoom(player);
 		//if player x notify them that we are waiting for other players
 		if (player.turn === 'x') {
-			player.socket.emit('serverMessage', 'waiting for player O');
+			player.socket.emit('serverMessage', player.username + ': waiting for player O');
 		} else if (player.turn === 'o'){
 			//if player o, notify player x that o has joined notify both that the game has started
-			player.socket.emit('serverMessage', 'Playing as O');
+			player.socket.emit('serverMessage', player.username + ': Playing as O');
 			//player.socket.emit('disable');
 			var users = player.room.player;
 			for (var i in users) {
 				//don't broadcast message to self
 				if (users[i].userid !== player.userid) {
-					users[i].socket.emit('serverMessage', player.turn + ' joined.');
+					users[i].socket.emit('serverMessage', player.username + ' joined.');
 					users[i].socket.emit('enable');
+				
 				} 
 			}
 		}
@@ -54,7 +56,7 @@ io.sockets.on('connection', function (socket) {
 			for (var i in users) {
 				users[i].turn = 'x';
 			
-				users[i].socket.emit('serverMessage', player.turn + ' has left. Playing as ' + 
+				users[i].socket.emit('serverMessage', player.username + ' has left. Playing as ' + 
 				users[i].turn);
 			}
 		}
@@ -86,5 +88,6 @@ io.sockets.on('connection', function (socket) {
 
 	});
 
+	socket.emit('join');
 
 });
