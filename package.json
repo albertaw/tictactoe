@@ -20,11 +20,11 @@
   },
   "homepage": "https://github.com/albertaw/tictactoe",
   "dependencies": {
-    "express": "^4.13.3",
+    "express": "^4.15.3",
     "jasmine-node": "^1.14.5",
-    "jquery": "^2.2.0",
-    "mocha": "^2.4.5",
-    "node-uuid": "^1.4.7",
-    "socket.io": "^1.4.5"
+    "jquery": "^2.2.4",
+    "mocha": "^2.5.3",
+    "node-uuid": "^1.4.8",
+    "socket.io": "^1.7.4"
   }
 }
