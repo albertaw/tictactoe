@@ -7,7 +7,6 @@ var Player = function (socket) {
 	this.turn = "";
 	this.score = 0;
 	this.wins = 0;
-
 }
 
 module.exports = Player;
