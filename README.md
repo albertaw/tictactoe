@@ -1,10 +1,10 @@
 # Tic Tac Toe
 
-A two player came where users anywhere can play against each other. 
-When you enter the app, you will be automatically put in a game room. 
+A two player game where users anywhere can play against each other. 
+When you enter the game, you will be automatically put into room. 
 If you are the first to arrive, you will have to wait for another 
-to join. The game will start when the second player arrives. You can 
-test the game by opening two browser windows. 
+player to join. The game will start when the second player arrives. 
+You can test the game by opening two browser windows. 
 
 The live app can be viewed here: https://alberta-tictactoe.herokuapp.com
 
