@@ -81,9 +81,6 @@ io.sockets.on('connection', function (socket) {
 		for (var i in users) {
 			users[i].socket.emit('newGame');
 			users[i].socket.emit('serverMessage', 'New game started');
-			if (users[i].turn === 'o') {
-				users[i].socket.emit('disable');	
-			}
 		}
 
 	});

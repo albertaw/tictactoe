@@ -257,12 +257,11 @@ var Tictactoe = (function () {
 		//click listener for new game
 		$('#btnNewGame').click(function () {
 			cleanup();
+			enableBoard();
 			if (!onePlayer) {
 				socket.emit('newGame');
 			}
 		});
-
-		enableBoard();
 
 		if (players !== 1) {
 			onePlayer = false;
