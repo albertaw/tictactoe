@@ -1,0 +1,32 @@
+<!Doctype html>
+<html lang="en">
+	<head>
+		<meta charet="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,  user-scalable=no">	
+		<link rel="stylesheet" type="text/css" href="styles.css">
+	</head>
+	<body>
+		<div class="nav">
+			<div class="container-fluid">
+				<div class="nav-links">
+					<a href="/" class="me-1">Home</a>
+					<a href="https://github.com/albertaw/tictactoe" target="blank">Github</a>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="container-fluid">
+				<div class="mb-1">
+					<div class="score">Player X: <span id="x-score"></span></div>
+					<div class="score">Player O: <span id="o-score"></span></div>
+				</div>
+				<p id="message" class="text-center"></p>
+				<div id="board" class="container"></div>
+				<div class="text-center">
+					<button id="resetButton" class="button">New Game</button>
+				</div>
+			</div>
+		</div>
+		<script type="module" src="main.js"></script>
+	</body>
+</html>

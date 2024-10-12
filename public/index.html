@@ -1,83 +1,21 @@
 <!Doctype html>
-<html lang="en" ng-app="tictactoe">
+<html lang="en">
 	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<!-- MOBILE RESPONSIVENESS -->
+		<meta charet="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1,  user-scalable=no">	
-		<meta name="description" content="">
-		<meta name="keywords" content="">
-		<meta name="author" content="">
-		
-		<title>Tic Tac Toe | Node.js game </title>
-		
-		<!-- =========================
-			FAV AND TOUCH ICONS  
-		============================== -->
-		<link rel="icon" href="favicon.ico">
-
-		<!-- =========================
-			STYLESHEETS  
-		============================== -->
-    <!-- ROBOTO FONT -->
-    <link href='http://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
-    <!-- FONT AWESOME -->
-		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-        <!-- BOOTSTRAP -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <!-- CEREBRO STYLES -->
-    <link rel="stylesheet" type="text/css" href="css/cerebro.css">
-    <!-- CUSTOM STYLES -->
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
-	<body ng-controller="mainController">
-		
-		<div class="hero-wrapper">
-			<!-- =========================
-				TOP MENU  
-			============================== -->
-			<header class="menu menu-horizontal menu-top affix light-theme transparent">
-				<div class="container-fluid">
-					<!--
-					DESKTOP NAVIGATION 
-					========================================= -->
-					<!-- BRANDING -->
-					<a class="nav-left" href="index.html"><img src="img/square-32.png"></a>
-					
-				</div><!-- END WRAPPER -->
-			</header><!-- END TOP MENU -->
-			<!-- ==============================
-				HOME SECTION
-			=================================== -->
-			<section id="home" class="bg hero-bg home-bg light-theme">
-				<div class="container text-center">
-					<!-- CENTER CONTENT  -->
-					<div class="center-content col-xs-12">
-				 		<h1 class="title text-uppercase bolder">Tic Tac Toe</h1>
-				 		<p>
-				 			<a href="two-player.html" class="button button-default button-dark">two player</a>
-				 		</p>
-					</div>
+	<body>
+		<div class="nav">
+			<div class="container-fluid">
+				<div class="pull-right">
+					<a href="https://github.com/albertaw/tictactoe" target="blank">Github</a>
 				</div>
-			</section><!-- END HOME -->
-		<!--
-			END SITE WRAPPER 
-		============================================= -->
-
-		<!-- =========================
-			SCRIPTS 
-		============================== -->
-		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script type="text/javascript" src="js/cerebro.js"></script>
-		<script type="text/javascript" src="js/scripts"></script>
-		<script type="text/javascript">
-			$('.center-content').vAlign();
-		</script>
+			</div>
+		</div>
+		<div class="text-center center-vh">
+			<h1>Tic Tac Toe</h1>
+			<a href="single-player.html" class="button">One Player</a>
+		</div>
 	</body>
 </html>
