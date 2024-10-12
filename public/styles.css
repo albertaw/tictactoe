@@ -87,6 +87,10 @@ tr:last-child td{
 	text-align: center;
 }
 
+.text-right {
+	text-align: right;
+}
+
 .center-vh{
   margin: 0;
   position: absolute;
@@ -134,7 +138,6 @@ tr:last-child td{
 	float: right;
 	margin-right: 32px;
 }
-
 
 .me-1 {
 	margin-right: 8px;
