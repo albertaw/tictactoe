@@ -45,5 +45,5 @@ Navigate your browser window to `localhost:8080` to see a demo.
 Jest is used for unit testing. To run the unit tests use the following command:
 
 ```bash
-npm test
+npm run test
 ```

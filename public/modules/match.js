@@ -7,12 +7,12 @@ export class Match {
 		this.playing = true;
 		this.numMoves = 0;
 		this.numRounds = 1;
+		this.easyMode = true;	
 		this.board = new Board();
-		this.players = {'x': new Player('x'), 'o': new Computer('o')};
+		this.players = {'x': new Player('x'), 'o': new Computer('o', this.easyMode)};
 		this.currentPlayer = this.players['x'];
 
 		this.handleBoardClick = this.handleBoardClick.bind(this);
-		//this.update = this.update.bind(this);
 	}
 
 	async handleBoardClick(cell, row, col) {
@@ -52,6 +52,8 @@ export class Match {
 		this.numMoves = 0;
 		this.playing = true;
 		this.currentPlayer = this.players['x'];
+		const randomTries = this.easyMode ? 2 : 0; 
+		this.players['o'].randomTries = randomTries;
 		this.board.state = [
 			[0,0,0],
 			[0,0,0],
@@ -66,7 +68,24 @@ export class Match {
 		}
 
 		this.display('message', `Round ${this.numRounds}`);
+		this.display('x-score', this.players['x'].score);
 		this.display('o-score', this.players['o'].score);
+	}
+
+	handleModeClick() {
+		const checkBox = document.getElementById('mode');
+
+		if (checkBox.checked) {
+			console.log('setting to easy')
+			this.easyMode = true;
+			this.players['o'].easyMode = true;
+			this.players['o'].randomTries = 2;
+		} else {
+			console.log('setting to difficult')
+			this.easyMode = false;
+			this.players['o'].easyMode = false;
+			this.players['o'].randomTries = 0;
+		}
 	}
 
 	isWin(mark) {
@@ -103,5 +122,6 @@ export class Match {
 		this.display('o-score', this.players['o'].score);
 		this.display('message', `Round ${this.numRounds}`);
 		document.getElementById('resetButton').addEventListener('click', () => this.handleResetClick());
+		document.getElementById('mode').addEventListener('change', () => this.handleModeClick());
 	}
 }

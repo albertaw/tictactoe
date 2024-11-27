@@ -105,6 +105,7 @@ describe('match module', () => {
   it('handleBoardClick for x', async () => {
     const match = new Match();
     match.numMoves = 4;
+    match.easyMode = false;
     match.board.state = [
       [0,'o','x'],
       [0, 0, 'x'],

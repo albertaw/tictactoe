@@ -1,17 +1,19 @@
 {
 	"scripts": {
 		"start": "node server",
-		"test": "node --experimental-vm-modules node_modules/.bin/jest"
+		"test": "node --experimental-vm-modules node_modules/.bin/jest",
+		"cypress": "cypress open"
 	},
 	"jest": {
 		"testEnvironment": "jsdom",
-		 "transform": {
-      "^.+\\.js$": "babel-jest"
-    }
+		"transform": {
+			"^.+\\.js$": "babel-jest"
+		}
 	},
 	"devDependencies": {
 		"@babel/preset-env": "^7.25.8",
 		"babel-jest": "^29.7.0",
+		"cypress": "^13.15.0",
 		"jest": "^29.7.0",
 		"jest-environment-jsdom": "^29.7.0"
 	},

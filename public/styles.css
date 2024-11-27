@@ -91,6 +91,21 @@ tr:last-child td{
 	text-align: right;
 }
 
+.pull-right {
+	float: right;
+}
+.nav-links {
+	display: inline-block;
+	height: 48px;
+	line-height: 48px;
+}
+
+.nav {
+	height: 48px;
+	font-size: 16px;
+	margin-bottom: 16px;
+}
+
 .center-vh{
   margin: 0;
   position: absolute;
@@ -114,23 +129,6 @@ tr:last-child td{
 	text-decoration: none;
 }
 
-.bottom {
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	padding: 1em;
-}
-
-.nav {
-	padding: 16px 0;
-	font-size: 16px;
-	margin-bottom: 16px;
-}
-
-.nav-links {
-	text-align: right;
-}
-
 .score {
 	display: inline;}
 
@@ -146,3 +144,4 @@ tr:last-child td{
 .mb-1 {
 	margin-bottom: 16px;
 }
+

@@ -9,12 +9,15 @@
 		<div class="nav">
 			<div class="container-fluid">
 				<div class="nav-links">
+					<label>Easy mode</label>
+					<input type="checkbox" id="mode" checked>
+				</div>
+				<div class="nav-links pull-right">
 					<a href="/" class="me-1">Home</a>
 					<a href="https://github.com/albertaw/tictactoe" target="blank">Github</a>
 				</div>
 			</div>
 		</div>
-		<div>
 			<div class="container-fluid">
 				<div class="mb-1">
 					<div class="score">Player X: <span id="x-score"></span></div>
@@ -27,6 +30,12 @@
 				</div>
 			</div>
 		</div>
-		<script type="module" src="main.js"></script>
+		<script type="module">
+			import { Match } from './modules/match.js';
+
+			const match = new Match();
+			match.start();
+
+		</script>
 	</body>
 </html>
