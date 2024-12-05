@@ -6,7 +6,7 @@ View the live demo [here]( https://alberta-tictactoe-d971d09a34ae.herokuapp.com/
 
 ### Computer algorithm
 
-The board’s state is represented as a 3 x 3 matrix. Elements with the value `0` mean a square is free. Otherwise, elements have the value of the player’s mark. Values are assigned to the free squares to rank the priority the computer should use when selecting a move. A value of `2` means the computer wins if making this move. A value of `1` means player X is blocked from winning. And a value of `0` means the move is neutral. The computer will always select the move that has the highest value.
+The board’s state is represented as a 3 x 3 matrix. Elements with the value `0` mean a square is free. Otherwise, elements have the value of the player’s mark. Values are assigned to the free squares to rank the priority the computer should use when selecting a move. A value of `2` means the computer wins if making this move. A value of `1` means player X is blocked from winning. And a value of `0` means the move is neutral. In difficult mode, the computer will always select the move that has the highest value. In easy mode, the computer will select a random square two out of four moves.
 
 ## Getting started
 

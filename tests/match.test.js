@@ -1,4 +1,5 @@
 import { Match } from '../public/modules/match.js';
+import { Computer } from '../public/modules/computer.js';
 
 describe('match module', () => {
   
@@ -116,6 +117,9 @@ describe('match module', () => {
       [0,'o','x'],
       ['x',0,'o']
     ];
+
+    match.players['o'].getMove = jest.fn().mockReturnValue([1,1]);
+
     document.body.innerHTML = '<div id="board"></div>';
     
     match.board.render(match.handleBoardClick, 'board');
