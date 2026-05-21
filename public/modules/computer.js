@@ -7,32 +7,6 @@ export class Computer extends Player {
 		this.randomTries = easyMode ? 2 : 0; 
 	}
 
-	isWin(boardState, mark, row, col) {
-		const state = boardState.map(row => [...row]);
-		//make the move
-		state[row][col] = mark;		
-
-		for (let i = 0; i < 3; i++) {
-			//check rows
-			if (state[i][0] == state[i][1] && state[i][1] == state[i][2] && state[i][0] == mark) {
-				return true;
-			}
-			//check columns
-			if (state[0][i] == state[1][i] && state[1][i] == state[2][i] && state[0][i] == mark) {
-				return true;
-			}
-		}
-		//check diagonals
-		if (state[0][0] == state[1][1] && state[1][1] == state[2][2] && state[0][0] == mark) {
-			return true;
-		}
-		if (state[0][2] == state[1][1] && state[1][1] == state[2][0] && state[0][2] == mark) {
-			return true;
-		}
-
-		return false;
-	}
-
 	getMove(state) {
 		const rewards = [];
 
@@ -74,6 +48,32 @@ export class Computer extends Player {
 			const choice = Math.floor(Math.random() * rewards.length);
 			return rewards[choice].location;
 		}
+	}
+
+	isWin(boardState, mark, row, col) {
+		const state = boardState.map(row => [...row]);
+		//make the move
+		state[row][col] = mark;		
+
+		for (let i = 0; i < 3; i++) {
+			//check npm 
+			if (state[i][0] == state[i][1] && state[i][1] == state[i][2] && state[i][0] == mark) {
+				return true;
+			}
+			//check columns
+			if (state[0][i] == state[1][i] && state[1][i] == state[2][i] && state[0][i] == mark) {
+				return true;
+			}
+		}
+		//check diagonals
+		if (state[0][0] == state[1][1] && state[1][1] == state[2][2] && state[0][0] == mark) {
+			return true;
+		}
+		if (state[0][2] == state[1][1] && state[1][1] == state[2][0] && state[0][2] == mark) {
+			return true;
+		}
+
+		return false;
 	}
 
 	async makeMove(state) {

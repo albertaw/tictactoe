@@ -31,6 +31,29 @@ export class Match {
 		}
 	}
 
+	isWin(mark) {
+		const state = this.board.state;
+		
+		for (let i = 0; i < 3; i++) {
+			//check rows
+			if (state[i][0] == state[i][1] && state[i][1] == state[i][2] && state[i][0] == mark) {
+				return true;
+			}
+			//check columns
+			if (state[0][i] == state[1][i] && state[1][i] == state[2][i] && state[0][i] == mark) {
+				return true;
+			}
+		}
+		//check diagonals
+		if (state[0][0] == state[1][1] && state[1][1] == state[2][2] && state[0][0] == mark) {
+			return true;
+		}
+		if (state[0][2] == state[1][1] && state[1][1] == state[2][0] && state[0][2] == mark) {
+			return true;
+		}
+		return false;
+	}
+
 	update() {
 		const mark = this.currentPlayer.mark;
 		this.numMoves += 1;
@@ -86,29 +109,6 @@ export class Match {
 			this.players['o'].easyMode = false;
 			this.players['o'].randomTries = 0;
 		}
-	}
-
-	isWin(mark) {
-		const state = this.board.state;
-		
-		for (let i = 0; i < 3; i++) {
-			//check rows
-			if (state[i][0] == state[i][1] && state[i][1] == state[i][2] && state[i][0] == mark) {
-				return true;
-			}
-			//check columns
-			if (state[0][i] == state[1][i] && state[1][i] == state[2][i] && state[0][i] == mark) {
-				return true;
-			}
-		}
-		//check diagonals
-		if (state[0][0] == state[1][1] && state[1][1] == state[2][2] && state[0][0] == mark) {
-			return true;
-		}
-		if (state[0][2] == state[1][1] && state[1][1] == state[2][0] && state[0][2] == mark) {
-			return true;
-		}
-		return false;
 	}
 
 	display(id, text) {
