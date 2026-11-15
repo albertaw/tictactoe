@@ -47,3 +47,12 @@ Jest is used for unit testing. To run the unit tests use the following command:
 ```bash
 npm run test
 ```
+
+## ROADMAP
+
+- Reinforcement learning for computer player
+- Two player games
+- Score manager
+- Match players to game rooms
+- Invite player to a game room
+- Chat room in games
